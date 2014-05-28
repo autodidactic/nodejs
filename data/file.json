@@ -1,0 +1,4 @@
+{ "username" : "seconduser", "password" : "seconduser", "email" : "seconduser@gmail.com" }, 
+{  "username" : "thirduser", "password" : "thirduser", "email" : "thirduser@gmail.com" }, 
+{ "username" : "thirduser", "password" : "thirduser1", "email" : "thirduser1@gmail.com" }, 
+{ "email" : "fourthuser1@gmail.com", "password" : "fourthuser1", "username" : "sixthuser" } 
