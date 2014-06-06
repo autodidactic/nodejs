@@ -9,15 +9,52 @@ var haml = require('haml');
  var db = require('mongojs').connect(dburl,coll);  
      
 /* GET home page. */
-router.get('/', function(req, res) {  
-    res.render('index', { title: 'Express' });  
-});  
-    
+router.get('/', function(req, res) { 
+    res.render('index', { title: 'Express' }); 
+}); 
+  
 /* GET Hello World page. */
-router.get('/helloworld', function(req, res) {  
-    res.render('helloworld', { title: 'Hello, World!' });  
-});  
-    
+router.get('/helloworld', function(req, res) { 
+        res.header("Access-Control-Allow-Origin","*");
+  res.header("Access-Control-Allow-Headers","X-Requested-With");
+  res.header("Access-Control-Allow-Methods","GET, POST");
+    res.render('helloworld', { title: 'Hello, World!' }); 
+}); 
+  
+router.post('/adduser', function(req, res,next) {
+    res.header("Access-Control-Allow-Origin","*");
+  res.header("Access-Control-Allow-Headers","X-Requested-With");
+  res.header("Access-Control-Allow-Methods","GET, POST");
+   console.log(req.body.user);
+   console.log(req.body.email);
+    var first = req.body.user;
+    var second = req.body.email;
+    res.write("Hello users ");
+    res.render('adduser', { title: 'Users,Welcome!'},function(err, html){
+        
+        res.write(JSON.stringify({user : first}));
+        res.write(JSON.stringify({email : second}));
+        
+        res.end();
+    }); 
+       
+ });
+ 
+  
+  router.get('/userList', function(req,res){
+      res.header("Access-Control-Allow-Origin","*");
+  res.header("Access-Control-Allow-Headers","X-Requested-With");
+  res.header("Access-Control-Allow-Methods","GET, POST");
+       res.render('userList', { title: 'Users, World!' }); 
+  });
+  
+  
+  router.get('/newuser',function(req,res){
+          res.header("Access-Control-Allow-Origin","*");
+  res.header("Access-Control-Allow-Headers","X-Requested-With");
+  res.header("Access-Control-Allow-Methods","GET, POST");
+     res.render('newuser',{title: 'Add new user'}) ;
+  });
      
 /* GET Userlist page. */
 router.get('/userlist', function(req, res) { 
